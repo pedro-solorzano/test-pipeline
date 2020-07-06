@@ -1,0 +1,64 @@
+FORMAT: 1A
+
+# hello-world-green-marimba
+
+This is a Hello World example API made in apiary
+
+## Hello World [/greetings]
+Just one object with one property **greeting**
+
+### Get Greeting [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "greeting": "Hello World"
+            }
+            
+    + Schema
+
+            {
+                "type": "object",
+                "required": [
+                    "greeting"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "greeting": {
+                        "type": "string",
+                        "examples": [
+                            "Hello World"
+                        ]
+                    }
+                }
+            }
+        
+### Put Noun [PUT]
+
++ Response 201 (application/json)
+
+    + Body
+    
+            {
+                "noun": "Axel"
+            }
+            
+    + Schema
+        
+            {
+                "type": "object",
+                "required": [
+                    "noun"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                    "noun": {
+                        "type": "string",
+                        "examples": [
+                            "Axel"
+                        ]
+                    }
+                }
+            }
