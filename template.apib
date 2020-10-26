@@ -1,0 +1,274 @@
+FORMAT: 1A
+HOST: https://cc-api.greenmarimba2.com
+
+# cc-iot-app
+
+Critical Climate API is a AWS IoT-based API allowing CC facilities to view/controls its Thrive PLC product.
+
+
+## Authentication
+
+All requests need to be authenticated, to do this you will need to pass the following in the Header:
+
+> X-API-KEY: Your Api Key
+
+## Devices Collection [/v1/devices]
+
+### Create a New Device [POST]
+
+You may create your own device using this action. It takes a JSON
+object containing a device.
+
++ Request (application/json)
+
+
+    + Headers
+    
+            X-API-KEY: api_key
+
+    + Body
+ 
+
+                {
+                    "clientId": "cc",
+                    "deviceId": "qa-dredd",
+                    "facilityId": "main",
+                    "serialNumber": "SN-D7F3C8947867",
+                    "devType": "plc",
+                    "email": "support@greenmarimba.com"
+                }
+
+    + Schema
+            
+                [POST-api-v1-devices-request-schema.json]
+
+
++ Response 201 (application/json)
+
+    + Body
+ 
+
+                {
+                    "clientId": "cc",
+                    "facilityId": "main",
+                    "deviceId": "qa-dredd",
+                    "serialNumber": "SN-D7F3C8947867",
+                    "activationCode": "AC-9BE75CD0F1543D44C9AB",
+                    "activated": false,
+                    "email": "support@greenmarimba.com",
+                    "endpoint": "endpoint.iot.us-west-2.amazonaws.com",
+                    "certs": "s3://cc-iot-devices-us-west-2/devices/certificates/qa-dredd",
+                    "topics": {
+                        "command": "/cmd/cc/main/qa-dredd",
+                        "data": "/dt/cc/main/qa-dredd"
+                    }
+                }
+
+    + Schema
+
+                [POST-api-v1-devices-response-schema.json]
+
+
+### Get a device [GET /v1/devices/{deviceId}]
+
+Get JSON struct with the device information.
+
++ Parameters
+
+    + deviceId: `qa-dredd` (string, required) - The id of the device.
+        
++ Response 200 (application/json)
+
+    + Body
+ 
+
+                {
+                    "clientId": "cc",
+                    "facilityId": "main",
+                    "deviceId": "qa-dredd",
+                    "serialNumber": "SN-D7F3C8947867",
+                    "activationCode": "AC-9BE75CD0F1543D44C9AB",
+                    "activated": false,
+                    "email": "support@greenmarimba.com",
+                    "endpoint": "endpoint.iot.us-west-2.amazonaws.com",
+                    "certs": "s3://cc-iot-devices-us-west-2/devices/certificates/qa-dredd",
+                    "topics": {
+                        "command": "/cmd/cc/main/qa-dredd",
+                        "data": "/dt/cc/main/qa-dredd"
+                    }
+                }
+
+    + Schema
+
+                [GET-api-v1-devices-response-schema.json]
+
+
+### Delete a Device [DELETE /v1/devices]
+
+Delete a device from the `devices` table as in Iot Core on AWS
+
++ Request (application/json)
+
+    + Headers
+    
+            X-API-KEY: api_key
+
+    + Body
+ 
+
+                {
+                    "deviceId": "qa-dredd"
+                }
+
+    + Schema
+
+                [DELETE-api-v1-devices-request-schema.json]
+
+
++ Response 204 (application/json)
+
+### Get device current readings [GET /v1/devices/{deviceId}/readings]
+
+Get current reading from device
+
++ Parameters 
+
+    + deviceId: `cc-plc` (string, required) - Device ID of the device you want to get current sensor readings from.
+
++ Response 202 (application/json)
+
+    + Body
+
+                {
+                  "Metadata": {
+                      "measurements": {
+                          "temp": {
+                              "unit": "F",
+                              "displayname": "Temperature"
+                          },
+                          "co2": {
+                              "unit": "PPM",
+                              "displayname": "CO2"
+                          },
+                          "humidity": {
+                              "unit": "%RH",
+                              "displayname": "Humidity"
+                          },
+                          "vpd": {
+                              "unit": "kPa",
+                              "displayname": "VPD"
+                          },
+                          "light": {
+                              "unit": "%",
+                              "displayname": "Light"
+                          },
+                          "ppfd": {
+                              "unit": "PPFD",
+                              "displayname": "Light"
+                          },
+                          "fan": {
+                              "unit": "%",
+                              "displayname": "Fan"
+                          }
+                      }
+                  },
+                  "Data": {
+                    "rooms": [
+                      {
+                        "sensors": {
+                          "temp": {
+                            "alarm": true,
+                            "actual": 32,
+                            "setpoint": 75,
+                            "maxVal": 90,
+                            "minVal": 50
+                          },
+                          "fan": {
+                            "actual": 70,
+                            "setpoint": 100
+                          },
+                          "light": {
+                            "actual": 60,
+                            "setpoint": 100
+                          },
+                          "co2": {
+                            "alarm": true,
+                            "actual": 0,
+                            "setpoint": 1200,
+                            "maxVal": 1200,
+                            "minVal": 100
+                          },
+                          "humidity": {
+                            "alarm": true,
+                            "actual": 0,
+                            "setpoint": 60,
+                            "maxVal": 75,
+                            "minVal": 50
+                          },
+                          "ppfd": {
+                            "actual": 0
+                          },
+                          "vpd": {
+                            "alarm": false,
+                            "actual": 0.6107800006866455,
+                            "maxVal": 1.649999976158142,
+                            "minVal": 0.10000000149011612
+                          }
+                        },
+                        "name": "Flower 6",
+                        "recipe": {
+                          "name": "Strain-A-R200",
+                          "recipetime": "Week 3, Day 1, Hour 11",
+                          "active": true,
+                          "dayMode": true
+                        },
+                        "maintenanceMode": false,
+                        "dayMode": true,
+                        "roomId": "flower-6",
+                        "notifications": 3
+                      }
+                    ]
+                  },
+                  "updatedat": "2020-10-14T18:41:53.659Z"
+                }
+
+    + Schema
+
+                [GET-api-v1-device-readings-response-schema.json]
+
+
+### Rooms Readings [GET /v1/devices/{deviceId}/{roomId}/data{?sensor,start,end,scale}]
+
+Get reading from room
+
++ Parameters
+
+    + deviceId: `cc-plc` (string, required) - Device ID
+    + roomId: `flower-1` (string, required) - Room ID
+    + sensor: `temp` (string, required) - All
+    + start: `2020-10-01T19:45:42.939Z` (string, required) - All
+    + end: `2020-10-13T19:45:42.939Z` (string, required) - All
+    + scale: `1min` (string, required) - All
+                
++ Response 202 (application/json)
+            
+    + Body
+ 
+
+                {
+                    "start": "2020-10-01T10:00:00Z",
+                    "end": "2020-10-01T13:00:00Z",
+                    "period": "5min",
+                    "count": 36,
+                    "temp": {
+                        "actual":   [79,70,73,75,71,76,71,79,73,76,79,75,71,75,78,71,78,71,77,71,77,78,76,74,75,76,75,82,83,83,83,84,84,86,87,88],
+                        "setpoint": [75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,75,78,78,78,78,78,78,78,78,78,78,78],
+                        "min":      [70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70,70],
+                        "max":      [82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82,82]
+                    }
+                }
+
+    + Schema
+
+                [GET-api-v1-rooms-readings-response-schema.json]
+
