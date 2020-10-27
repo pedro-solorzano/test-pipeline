@@ -1,0 +1,391 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Api Readings - get response schema validator.",
+    "description": "This schema validates GET requests to the responses [/v1/devices/{deviceId}/readings]",
+    "type": "object",
+    "required": [
+      "Metadata",
+      "updatedat",
+      "Data"
+    ],
+    "properties": {
+      "Metadata": {
+        "type": "object",
+        "required": [
+          "measurements"
+        ],
+        "properties": {
+          "measurements": {
+            "type": "object",
+            "required": [
+              "temp",
+              "co2",
+              "humidity",
+              "vpd",
+              "light",
+              "ppfd",
+              "fan"
+            ],
+            "properties": {
+              "temp": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "co2": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "humidity": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "vpd": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "light": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "ppfd": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                  "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              },
+              "fan": {
+                "type": "object",
+                "required": [
+                  "unit",
+                  "displayname"
+                ],
+                "properties": {
+                  "unit": {
+                    "type": "string"
+                  },
+                  "displayname": {
+                    "type": "string"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "updatedat": {
+        "type": "string"
+      },
+      "Data": {
+        "type": "object",
+        "required": [
+          "rooms"
+        ],
+        "properties": {
+          "rooms": {
+            "type": "array",
+            "additionalItems": true,
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "sensors",
+                    "name",
+                    "recipe",
+                    "maintenanceMode",
+                    "dayMode",
+                    "roomId",
+                    "notifications"
+                  ],
+                  "properties": {
+                    "sensors": {
+                      "type": "object",
+                      "required": [
+                        "temp",
+                        "fan",
+                        "light",
+                        "co2",
+                        "humidity",
+                        "ppfd",
+                        "vpd"
+                      ],
+                      "properties": {
+                        "temp": {
+                          "type": "object",
+                          "required": [
+                            "alarm",
+                            "actual",
+                            "setpoint",
+                            "maxVal",
+                            "minVal"
+                          ],
+                          "properties": {
+                            "alarm": {
+                              "type": "boolean"
+                            },
+                            "actual": {
+                              "type": "integer"
+                            },
+                            "setpoint": {
+                              "type": "integer"
+                            },
+                            "maxVal": {
+                              "type": "integer"
+                            },
+                            "minVal": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "fan": {
+                          "type": "object",
+                          "required": [
+                            "actual",
+                            "setpoint"
+                          ],
+                          "properties": {
+                            "actual": {
+                              "type": "integer"
+                            },
+                            "setpoint": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "light": {
+                          "type": "object",
+                          "required": [
+                            "actual",
+                            "setpoint"
+                          ],
+                          "properties": {
+                            "actual": {
+                              "type": "integer"
+                            },
+                            "setpoint": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "co2": {
+                          "type": "object",
+                          "required": [
+                            "alarm",
+                            "actual",
+                            "setpoint",
+                            "maxVal",
+                            "minVal"
+                          ],
+                          "properties": {
+                            "alarm": {
+                              "type": "boolean"
+                            },
+                            "actual": {
+                              "type": "integer"
+                            },
+                            "setpoint": {
+                              "type": "integer"
+                            },
+                            "maxVal": {
+                              "type": "integer"
+                            },
+                            "minVal": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "humidity": {
+                          "type": "object",
+                          "required": [
+                            "alarm",
+                            "actual",
+                            "setpoint",
+                            "maxVal",
+                            "minVal"
+                          ],
+                          "properties": {
+                            "alarm": {
+                              "type": "boolean"
+                            },
+                            "actual": {
+                              "type": "integer"
+                            },
+                            "setpoint": {
+                              "type": "integer"
+                            },
+                            "maxVal": {
+                              "type": "integer"
+                            },
+                            "minVal": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "ppfd": {
+                          "type": "object",
+                          "required": [
+                            "actual"
+                          ],
+                          "properties": {
+                            "actual": {
+                              "type": "integer"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "vpd": {
+                          "type": "object",
+                          "required": [
+                            "alarm",
+                            "actual",
+                            "maxVal",
+                            "minVal"
+                          ],
+                          "properties": {
+                            "alarm": {
+                              "type": "boolean"
+                            },
+                            "actual": {
+                              "type": "number"
+                            },
+                            "maxVal": {
+                              "type": "number"
+                            },
+                            "minVal": {
+                              "type": "number"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "recipe": {
+                      "type": "object",
+                      "required": [
+                        "name",
+                        "recipetime",
+                        "active",
+                        "dayMode"
+                      ],
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "recipetime": {
+                          "type": "string"
+                        },
+                        "active": {
+                          "type": "boolean"
+                        },
+                        "dayMode": {
+                          "type": "boolean"
+                        }
+                      },
+                      "additionalProperties": false
+                    },
+                    "maintenanceMode": {
+                      "type": "boolean"
+                    },
+                    "dayMode": {
+                      "type": "boolean"
+                    },
+                    "roomId": {
+                      "type": "string"
+                    },
+                    "notifications": {
+                      "type": "integer"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false
+}

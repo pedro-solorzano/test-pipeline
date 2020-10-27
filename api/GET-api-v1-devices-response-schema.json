@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Api Devices - get response schema validator.",
+    "description": "This schema validates GET requests to the responses [/v1/devices/{deviceId}]",
+    "type": "object",
+    "required": [
+      "clientId",
+      "facilityId",
+      "deviceId",
+      "serialNumber",
+      "activationCode",
+      "activated",
+      "email",
+      "endpoint",
+      "certs",
+      "topics"
+    ],
+    "properties": {
+      "clientId": {
+        "type": "string"
+      },
+      "facilityId": {
+        "type": "string"
+      },
+      "deviceId": {
+        "type": "string"
+      },
+      "serialNumber": {
+        "type": "string"
+      },
+      "activationCode": {
+        "type": "string"
+      },
+      "activated": {
+        "type": "boolean"
+      },
+      "email": {
+        "type": "string"
+      },
+      "endpoint": {
+        "type": "string"
+      },
+      "certs": {
+        "type": "string"
+      },
+      "topics": {
+        "type": "object",
+        "required": [
+          "command",
+          "data"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": true
+}

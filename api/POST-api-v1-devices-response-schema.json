@@ -1,0 +1,84 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Api Devices - post response schema validator.",
+    "description": "This schema validates POST requests to the responses [/v1/devices]",
+    "type": "object",
+    "required": [
+      "clientId",
+      "facilityId",
+      "deviceId",
+      "serialNumber",
+      "activationCode",
+      "activated",
+      "email",
+      "endpoint",
+      "certs",
+      "topics"
+    ],
+    "properties": {
+      "clientId": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "facilityId": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "deviceId": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9-]*$"
+      },
+      "serialNumber": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "activationCode": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 23,
+        "pattern": "^[A-Z0-9-]*$"
+      },
+      "activated": {
+        "type": "boolean"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "endpoint": {
+        "type": "string",
+        "minLength": 20,
+        "maxLength": 100,
+        "pattern": "^[a-zA-Z0-9:._-]*$"
+      },
+      "certs": {
+        "type": "string",
+        "pattern": "^[a-zA-Z0-9:\/._-]*$"
+      },
+      "topics": {
+        "type": "object",
+        "required": [
+          "command",
+          "data"
+        ],
+        "properties": {
+          "command": {
+            "type": "string"
+          },
+          "data": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false
+}

@@ -1,0 +1,16 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Api Devices - delete schema validator.",
+    "description": "This schema validates DELETE requests [/v1/devices]",
+    "type": "object",
+    "required": ["deviceId"],
+    "properties": {
+       "deviceId": {
+          "type": "string",
+          "minLength": 4, 
+          "maxLength": 32,
+          "pattern": "^[a-zA-Z0-9-]*$"
+       }
+    },
+    "additionalProperties": false
+ }

@@ -1,0 +1,44 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Api Devices - post request schema validator.",
+    "description": "This schema validates POST requests [/v1/devices]",
+    "type": "object",
+    "required": ["clientId","deviceId","facilityId","serialNumber","devType","email"],
+    "properties": {
+      "clientId": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "facilityId": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "deviceId": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9-]*$"
+      },
+      "serialNumber": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9:_-]*$"
+      },
+      "devType": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 32,
+        "pattern": "^[a-zA-Z0-9]*$"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      }
+    },
+    "additionalProperties": false
+}
