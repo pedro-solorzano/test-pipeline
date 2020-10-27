@@ -1,0 +1,23 @@
+name: Pre-procesado
+on: push
+
+jobs: 
+  job1: 
+    name: Modificando archivos
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Revisar repositorio
+        uses: actions/checkout@v2.3.2
+      
+      - name: Modificando archivos con un script
+        run: |
+          perl apiary-pre-process.pl
+
+      - name: Commit and push
+        run: |
+          git config --global user.name "pedro-solorzano"
+          git config --global user.email "pedro-solorzano@greenmarimba.io"
+
+          git add apiary-test.apib
+          git commit -m "Añadido apiary pre-procesado"
+          git push
