@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
-          git add apiary.apib
-          git commit -m "apiary.apib updated with github actions"
+          git add apiary-test.apib
+          git commit -m "apiary-test.apib updated with github actions"
           git push
           
