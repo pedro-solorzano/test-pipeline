@@ -20,6 +20,7 @@ jobs:
 
       - name: Update files on GitHub
         run: |
+          ls -l
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
           git add apiary-test.apib
