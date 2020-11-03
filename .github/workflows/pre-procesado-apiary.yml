@@ -20,9 +20,9 @@ jobs:
 
       - name: Update files on GitHub
         env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+          BRANCH: ${{ toJson(github.head_ref) }}
         run: |
-          echo "$GITHUB_CONTEXT"
+          echo "$BRANCH"
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
           git add apiary-test.apib
