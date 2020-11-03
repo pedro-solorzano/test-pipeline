@@ -22,9 +22,9 @@ jobs:
         env:
           BRANCH: ${{ toJson(github.head_ref) }}
         run: |
-          echo "$BRANCH"
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
+          git checkout $BRANCH
           git add apiary-test.apib
           git commit -m "apiary-test.apib updated with github actions"
           git push
