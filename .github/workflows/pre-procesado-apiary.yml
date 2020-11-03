@@ -19,8 +19,10 @@ jobs:
           perl apiary-pre-process.pl
 
       - name: Update files on GitHub
+        env:
+          GITHUB: ${{github}}
         run: |
-          git status
+          echo "$GITHUB"
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
           git add apiary-test.apib
