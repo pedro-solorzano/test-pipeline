@@ -28,7 +28,7 @@ jobs:
         env:
           BRANCH: ${{ toJson(github.head_ref) }}
         run: |
-          git branch
+          git branch -r
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
           git add apiary-test.apib
