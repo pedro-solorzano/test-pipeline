@@ -13,18 +13,26 @@ jobs:
     steps: 
       - name: Revisar repositorio
         uses: actions/checkout@v2.3.2
+        with:
+          ref: ${{ github.head_ref }}
       
       - name: Modificando archivos con un script
         run: |
           perl apiary-pre-process.pl
 
+      - name: Listar github
+        env:
+          GITHUB: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB"
+
       - name: Update files on GitHub
         env:
           BRANCH: ${{ toJson(github.head_ref) }}
         run: |
+          git branch -a
           git config --global user.name "pedro-solorzano"
           git config --global user.email "pedro.solorzano@greenmarimba.io"
-          git checkout $BRANCH
           git add apiary-test.apib
           git commit -m "apiary-test.apib updated with github actions"
           git push
