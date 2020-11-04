@@ -13,6 +13,8 @@ jobs:
     steps: 
       - name: Revisar repositorio
         uses: actions/checkout@v2.3.2
+        with:
+          ref: ${{ github.head_ref }}
       
       - name: Modificando archivos con un script
         run: |
