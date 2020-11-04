@@ -23,7 +23,7 @@ sub insertSchema {
     my $lenght = $finalPosition - $initialPosition;
     my $fileNameClean = substr($fileName, $initialPosition, $lenght); #extract the name of the file
     print "FileName: " . $fileNameClean . "\n";
-    open( SCHEMA, "api/" . $fileNameClean ) or die "File '" . $fileNameClean . "' not found\n"; #open file that match with $fileName
+    open( SCHEMA, "api/" . $fileNameClean ) or return $fileName; #open file that match with $fileName
     while ( <SCHEMA> ) { #read line by line and paste in $content
         $contenido =  $contenido . $tab . $_; 
     }
