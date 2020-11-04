@@ -28,4 +28,10 @@ jobs:
           git add apiary-test.apib
           git commit -m "apiary-test.apib updated with github actions"
           git push
+
+      - name: Listar github
+        env:
+          GITHUB: ${{ toJson(github) }}
+        run: |
+          echo "$GITHUB"
           
